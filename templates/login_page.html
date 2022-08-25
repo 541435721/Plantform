@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block formblock %}
+    <img src="{% static 'images/admin.png' %}" alt="" class="img-responsive">
+    <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+        <div class="wthree-field">
+            <input name="username" id="text1" type="text" value="" placeholder="用户名" required>
+        </div>
+        <div class="wthree-field">
+            <input name="password" id="myInput" type="Password" placeholder="密码" required>
+        </div>
+        <div class="wthree-field">
+            <button type="submit" class="btn">登录</button>
+        </div>
+        <div class="login-bottom">
+            <a href="{% url 'register' %}" class="">注册新用户</a>
+        </div>
+    </form>
+{% endblock %}

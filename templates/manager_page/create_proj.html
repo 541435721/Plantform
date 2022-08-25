@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {#    <meta name="keywords" content="jQuery,easyform,form validation,javascript,js,jq,jquery,表单验证,插件">#}
+    {#    <meta name="description" content="jQuery.Easyform表单验证插件">#}
+
+    <title>创建项目</title>
+
+    <meta name="description" content="">
+    <meta http-equiv="cleartype" content="on">
+
+    <link rel="stylesheet" href="{% static 'css/platform-1.css' %}">
+    <link rel="stylesheet" href="{% static 'js/easyform/easyform.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/tab.css' %}">
+
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
+    <script src="{% static 'js/easyform/easyform.js' %}"></script>
+    <script src="{% static 'js/ui.js' %}"></script>
+
+    <link href="{% static 'css/alert_style.css' %}" rel="stylesheet"/>
+    <style>
+        .alert {
+            width: 90%;
+            text-align: center;
+            color: #fff;
+            margin: 10px auto;
+            border-radius: 5px;
+            line-height: 30px;
+            cursor: pointer;
+            background: #4ab819;
+        }
+
+        .confirm {
+            background: #196fb8;
+        }
+
+        .open {
+            background: #f88408;
+        }
+
+        .toast {
+            background: #f80851;
+        }
+
+        .later {
+            background: #a9a9a9;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="page">
+
+    <div class="header">
+
+        <a class="link title-ani" data-letters="创建新项目">创建新项目</a>
+        <br>
+    </div>
+
+    <div class="form-div">
+        <form id="reg-form" action="{% url 'create_proj' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>项目名</td>
+                    <td><input name="uid" type="text" id="uid"
+                               data-easyform="length:1 16;"
+                               data-message="项目名不能为空"
+                               data-easytip="position:top;class:easy-blue;" data-message-ajax="">
+                    </td>
+                </tr>
+                <tr>
+                    <th>项目说明</th>
+                    <td><textarea id="about" data-easyform="null;" name="about"
+                                  style="width: 300px; height: 100px ;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>选择文件</th>
+                    <td><input type="file" accept=".mp4," size="30" id="uploadfile"
+                               name="uploadfile" data-message="未选择文件"></td>
+                </tr>
+            </table>
+
+            <div class="buttons" style="margin-top: 50px;">
+                <input value="创建项目" type="button" onclick="submitForm()" style="margin-right:20px; margin-top:20px;">
+                {#                <input value="我有账号，我要登录" type="button" style="margin-right:45px; margin-top:20px;">#}
+            </div>
+
+            <br class="clear">
+        </form>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        var v = $('#reg-form').easyform();
+
+        $('#demo-form').easyform();
+
+        v.is_submit = false;
+
+        v.error = function (ef, i, r) {
+            //console.log("Error事件：" + i.id + "对象的值不符合" + r + "规则");
+        };
+
+        v.success = function (ef) {
+            //console.log("成功");
+        };
+
+        v.complete = function (ef) {
+            console.log("完成");
+        };
+
+        $('#tip-test1').easytip();
+        $('#tip-test2').easytip();
+        $('#tip-test3').easytip();
+        $('#tip-test4').easytip();
+
+
+    });
+
+    function ajax_demo(p) {
+        $("#uid").trigger("easyform-ajax", true);
+    }
+
+    function submitForm() {
+        var fileInput = $('#uploadfile').get(0).files[0];
+        if (fileInput) {
+            $("#reg-form").submit();
+        } else {
+            mizhu.alert('创建项目失败', '需要选择上传文件！！！')
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

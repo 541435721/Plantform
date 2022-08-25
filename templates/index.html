@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>用户登陆和文件上传</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{% static 'css/main_style.css' %}" type="text/css" media="all">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+
+<body>
+
+<section class="main">
+    <div class="logo text-center">
+        <h1><a> 用户登陆和文件上传 </a></h1>
+    </div>
+    <div class="content-w3ls text-center">
+        {% block formblock %}
+        {% endblock %}
+    </div>
+    <div class="copyright">
+        <p>© 2022 用户登陆和文件上传.</p>
+    </div>
+</section>
+
+</body>
+<!-- //Body -->
+
+</html>
